@@ -21,6 +21,7 @@ function Post({ post, setCurrentId }) {
   return (
     <Card className={classes.card}>
       <CardMedia
+        component='div'
         className={classes.media}
         image={post.selectedFile}
         title={post.title}
