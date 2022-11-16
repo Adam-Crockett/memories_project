@@ -4,15 +4,16 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   overrides: [],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {
-    "react/prop-types": 0,
-    "react/function-component-definition": 0,
+    'react/prop-types': 0,
+    'react/function-component-definition': 0,
+    'arrow-body-style': ['error', 'as-needed'],
   },
 };
