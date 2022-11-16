@@ -5,7 +5,7 @@ import memories from "../../images/memories.png";
 
 import useStyles from "./styles";
 
-const Navbar = () => {
+function Navbar() {
   const classes = useStyles();
   const user = null;
   return (
@@ -61,6 +61,6 @@ const Navbar = () => {
       </Toolbar>
     </AppBar>
   );
-};
+}
 
 export default Navbar;

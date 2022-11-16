@@ -15,5 +15,6 @@ module.exports = {
     'react/prop-types': 0,
     'react/function-component-definition': 0,
     'arrow-body-style': ['error', 'as-needed'],
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
   },
 };

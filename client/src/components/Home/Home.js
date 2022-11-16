@@ -5,7 +5,7 @@ import { getPosts } from "../../actions/posts";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 
-const Home = () => {
+function Home() {
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
@@ -31,5 +31,5 @@ const Home = () => {
       </Container>
     </Grow>
   );
-};
+}
 export default Home;
