@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import {
   Avatar,
   Button,
@@ -8,7 +9,10 @@ import {
   Container,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
+import { createOrGetUser } from '../../utils';
+// import Icon from './Icon';
 import Input from './Input';
 import useStyles from './styles';
 
@@ -16,6 +20,7 @@ const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  // const dispatch = useDispatch();
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -32,12 +37,31 @@ const Auth = () => {
   };
 
   const googleSuccess = async (res) => {
-    console.log(res);
+    createOrGetUser(res);
+
+    // console.log(res);
+
+    // // const tokens = await axios.post()
+
+    // const result = res?.profileObj;
+    // const token = res?.tokenId;
+
+    // try {
+    //   dispatch({ type: 'AUTH', data: { result, token } });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   const googleFailure = (error) => {
     console.log(error);
     console.log('Google Sign In was unsuccessful. Try Again Later.');
   };
+
+  const login = useGoogleLogin({
+    flow: 'auth-code',
+    onSuccess: googleSuccess,
+    onError: googleFailure,
+  });
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -96,11 +120,33 @@ const Auth = () => {
           >
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
-          <GoogleLogin onSuccess={googleSuccess} onFailure={googleFailure} />
-
-          <Grid container justifyContent='flex-end'>
+          {/* <Button
+            color='secondary'
+            className={classes.googleButton}
+            onClick={() => login()}
+            startIcon={<Icon />}
+            fullWidth
+            variant='contained'
+          >
+            Sign in with Google
+          </Button> */}
+          <Grid container justifyContent='center'>
             <Grid item>
-              <Button onClick={switchMode}>
+              <GoogleLogin
+                onSuccess={googleSuccess}
+                onError={googleFailure}
+                // size='small'
+                type='icon'
+                logo_alignment='center'
+                shape='circle'
+                auto_select='false'
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container justifyContent='center'>
+            <Grid item>
+              <Button onClick={switchMode} className={classes.signUpSignIn}>
                 {isSignup
                   ? 'Already have an account? Sign In'
                   : "Don't have an account? Sign Up"}
