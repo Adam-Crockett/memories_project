@@ -2,7 +2,13 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 export const createOrGetUser = async (response) => {
-  const decode = jwt_decode(response.credential);
+  try {
+    const decoded = await jwt_decode(response.credential);
 
-  console.log(decode);
+    return decoded;
+  } catch (error) {
+    console.log(error);
+
+    return undefined;
+  }
 };

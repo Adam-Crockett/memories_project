@@ -1,30 +1,48 @@
-import React from "react";
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import memories from "../../images/memories.png";
+import React, { useState, useEffect } from 'react';
+import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import memories from '../../images/memories.png';
+import { useDispatch } from 'react-redux';
 
-import useStyles from "./styles";
+import useStyles from './styles';
 
 function Navbar() {
   const classes = useStyles();
-  const user = null;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+
+  console.log(user);
+
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    history.push('/');
+    setUser(null);
+  };
+
+  useEffect(() => {
+    const token = user?.profile.sub;
+    // JWT...
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
   return (
-    <AppBar className={classes.appBar} position="static" color="inherit">
+    <AppBar className={classes.appBar} position='static' color='inherit'>
       <div className={classes.brandContainer}>
         <Typography
           className={classes.heading}
           component={Link}
-          to="/"
-          variant="h2"
-          align="center"
+          to='/'
+          variant='h2'
+          align='center'
         >
           Memories
         </Typography>
         <img
           className={classes.image}
           src={memories}
-          alt="memories"
-          height="60"
+          alt='memories'
+          height='60'
         />
       </div>
       <Toolbar className={classes.toolbar}>
@@ -32,18 +50,19 @@ function Navbar() {
           <div className={classes.profile}>
             <Avatar
               className={classes.purple}
-              alt={user.result.name}
-              src={user.result.imageUrl}
+              alt={user.profile.given_name}
+              src={user.profile.picture}
             >
-              {user.result.name.charAt(0)}
+              {user.profile.given_name.charAt(0)}
             </Avatar>
-            <Typography className={classes.userName} variant="h6 ">
-              {user.result.name}
+            <Typography className={classes.userName} variant='h6'>
+              {user.profile.given_name}
             </Typography>
             <Button
-              vatriant="contained"
+              vatriant='contained'
               className={classes.logout}
-              color="secondary"
+              color='secondary'
+              onClick={logout}
             >
               Logout
             </Button>
@@ -51,9 +70,9 @@ function Navbar() {
         ) : (
           <Button
             component={Link}
-            to="/auth"
-            variant="contained"
-            color="primary"
+            to='/auth'
+            variant='contained'
+            color='primary'
           >
             Sign In
           </Button>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   Avatar,
   Button,
@@ -20,7 +21,8 @@ const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -37,7 +39,10 @@ const Auth = () => {
   };
 
   const googleSuccess = async (res) => {
-    createOrGetUser(res);
+    console.log(res);
+    const profile = await createOrGetUser(res);
+
+    console.log(profile);
 
     // console.log(res);
 
@@ -46,11 +51,12 @@ const Auth = () => {
     // const result = res?.profileObj;
     // const token = res?.tokenId;
 
-    // try {
-    //   dispatch({ type: 'AUTH', data: { result, token } });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      dispatch({ type: 'AUTH', data: { profile } });
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
   const googleFailure = (error) => {
     console.log(error);
