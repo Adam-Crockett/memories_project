@@ -12,7 +12,7 @@ import './index.css';
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
-  <GoogleOAuthProvider clientId='916635263628-enugu6ii0406mh87nki2fqoumsgeh50n.apps.googleusercontent.com'>
+  <GoogleOAuthProvider clientId={process.env.REACT_APP_PUBLIC_GOOGLE_API_TOKEN}>
     <Provider store={store}>
       <App />
     </Provider>
