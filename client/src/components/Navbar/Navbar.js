@@ -63,7 +63,7 @@ function Navbar() {
               {user?.result?.name}
             </Typography>
             <Button
-              vatriant='contained'
+              variant='contained'
               className={classes.logout}
               color='secondary'
               onClick={logout}
