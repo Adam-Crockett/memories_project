@@ -26,7 +26,7 @@ function Form({ currentId, setCurrentId }) {
   }, [post]);
 
   const clear = () => {
-    setCurrentId(null);
+    setCurrentId(0);
     setPostData({
       title: '',
       message: '',
@@ -51,7 +51,8 @@ function Form({ currentId, setCurrentId }) {
     return (
       <Paper className={classes.paper}>
         <Typography variant='h6' align='center'>
-          Please sign in to create your own memories and like other's memories.
+          Please sign in to create your own memories and like other people's
+          memories.
         </Typography>
       </Paper>
     );
