@@ -67,9 +67,8 @@ const Auth = () => {
       console.log(error);
     }
   };
-  const googleFailure = (error) => {
-    console.log(error);
-    console.log('Google Sign In was unsuccessful. Try Again Later.');
+  const googleError = () => {
+    alert('Google Sign In was unsuccessful. Try Again Later.');
   };
 
   return (
@@ -133,7 +132,7 @@ const Auth = () => {
             <Grid item>
               <GoogleLogin
                 onSuccess={googleSuccess}
-                onError={googleFailure}
+                onError={googleError}
                 type='icon'
                 logo_alignment='center'
                 shape='circle'
