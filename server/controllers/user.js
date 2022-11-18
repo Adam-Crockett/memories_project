@@ -58,7 +58,7 @@ export const signup = async (req, res) => {
       process.env.SECRET_KEY,
       { expiresIn: '1h' }
     );
-    res.status(200).json({ result: result, token });
+    res.status(201).json({ result, token });
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong.' });
   }
