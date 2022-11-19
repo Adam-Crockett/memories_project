@@ -50,6 +50,9 @@ const Home = () => {
   const searchPost = () => {
     if (search.trim() || tags) {
       dispatch(getPostBySearch({ search, tags: tags.join(',') }));
+      history.push(
+        `/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`
+      );
     } else {
       history.push('/');
     }
