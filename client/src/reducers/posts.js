@@ -39,7 +39,7 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       };
 
     case FETCH_BY_SEARCH:
-      return { ...state, posts: action.payload };
+      return { ...state, posts: action.payload.data };
     case FETCH_POST:
       return { ...state, post: action.payload };
 

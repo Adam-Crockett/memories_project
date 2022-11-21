@@ -34,6 +34,7 @@ export const getPosts = async (req, res) => {
 
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
+
   try {
     const title = new RegExp(searchQuery, 'i');
 
@@ -41,9 +42,7 @@ export const getPostsBySearch = async (req, res) => {
       $or: [{ title }, { tags: { $in: tags.split(',') } }],
     });
 
-    res.json({
-      data: posts,
-    });
+    res.json({ data: posts });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

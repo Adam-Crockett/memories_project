@@ -40,8 +40,8 @@ const Home = () => {
 
   const handleAddChip = (tag) => setTags([...tags, tag]);
 
-  const handleDeleteChip = (tagToDelete) =>
-    setTags(tags.filter((tag) => tag !== tagToDelete));
+  const handleDeleteChip = (chipToDelete) =>
+    setTags(tags.filter((tag) => tag !== chipToDelete));
 
   const searchPost = () => {
     if (search.trim() || tags) {
