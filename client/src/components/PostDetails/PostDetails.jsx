@@ -3,7 +3,6 @@ import {
   Paper,
   Typography,
   CircularProgress,
-  Divier,
   Divider,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
