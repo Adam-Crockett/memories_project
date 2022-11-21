@@ -27,6 +27,7 @@ export default makeStyles((theme) => ({
   googleButton: {
     margin: theme.spacing(3, 0, 2),
     width: '100%',
+    marginBottom: theme.spacing(2),
   },
   signUpSignIn: {
     margin: theme.spacing(2, 0, 2),
