@@ -34,7 +34,7 @@ function Navbar() {
 
     // JWT...
     setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
+  }, [location, user?.token]);
   return (
     <AppBar className={classes.appBar} position='static' color='inherit'>
       <Link to='/' className={classes.brandContainer}>
