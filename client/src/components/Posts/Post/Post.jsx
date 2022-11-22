@@ -54,7 +54,11 @@ function Post({ post, setCurrentId }) {
   const openPost = () => history.push(`/posts/${post._id}`);
   return (
     <Card className={classes.card} raised elevation={6}>
-      <ButtonBase className={classes.cardAction} onClick={openPost}>
+      <ButtonBase
+        component='span'
+        className={classes.cardAction}
+        onClick={openPost}
+      >
         <CardMedia
           component='div'
           className={classes.media}
