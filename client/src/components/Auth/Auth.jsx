@@ -57,7 +57,7 @@ const Auth = () => {
   };
 
   const googleSuccess = async (res) => {
-    const token = res.credential;
+    const token = res?.credential;
     const result = await createOrGetUser(res);
 
     try {
