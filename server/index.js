@@ -9,10 +9,12 @@ import userRoutes from './routes/users.js';
 
 const app = express();
 dotenv.config();
+const CONNECTION_URL = process.env.CONNECTION_URL;
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
+
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
@@ -25,7 +27,7 @@ const PORT = process.env.PORT || 5000;
 
 // Below params are no longer required in new versions of mongoose: useNewUrlParser, UseUnifiedTopology
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
