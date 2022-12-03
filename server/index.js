@@ -14,13 +14,6 @@ const CONNECTION_URL = process.env.CONNECTION_URL;
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'));
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-//   });
-// }
-
 // app.use(cors());
 
 app.use('/posts', postRoutes);
@@ -29,6 +22,12 @@ app.use('/user', userRoutes);
 app.get('/', (req, res) => {
   res.send('APP IS RUNNING');
 });
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+}
 
 // Set to private vars later
 const PORT = process.env.PORT || 5000;
