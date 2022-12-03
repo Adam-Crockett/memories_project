@@ -15,10 +15,9 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
-  const root = path.join(__dirname, 'client', 'build');
-  app.use(express.static(root));
+  app.use(express.static('client/build'));
   app.get('*', (req, res) => {
-    res.sendFile('index.html', { root });
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 }
 
