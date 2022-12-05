@@ -9,6 +9,7 @@ A social media application using the MERN (MongoDB, Express, React, Node) stack.
 ## Learning purposes of project
 
 - Use Redux for a scalable application.
+- Manage a datebase of users and related post content.
 - Use the OAuth 2.0 API with Google for authentication and authorization.
 - Create a variety of user interactions such as:
   - signup
