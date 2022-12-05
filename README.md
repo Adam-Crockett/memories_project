@@ -4,7 +4,7 @@ A social media application using the MERN (MongoDB, Express, React, Node) stack.
 
 ## Link to site
 
-(Memories Site)[https://mynewmemories.net]
+[Memories Site](https://mynewmemories.net)
 
 ## Learning purposes of project
 
